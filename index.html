@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Interactive Pins on ArcGIS Map - Piraeus, Greece</title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.23/"></script>
+
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/Graphic",
+        "esri/geometry/Point",
+        "esri/PopupTemplate",
+      ], function (Map, MapView, Graphic, Point, PopupTemplate) {
+        var map = new Map({
+          basemap: "topo-vector",
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+          center: [23.6386, 37.9442], // Longitude, latitude
+          zoom: 14,
+        });
+
+        view.when(function () {
+          // First pin (Sharks)
+          var pinPoint1 = new Point({
+            longitude: 23.64448,
+            latitude: 37.94362,
+          });
+
+          var pinSymbol1 = {
+            type: "simple-marker",
+            color: "blue",
+            size: "12px",
+            outline: {
+              color: [255, 255, 255],
+              width: 3,
+            },
+          };
+
+          var popupTemplate1 = new PopupTemplate({
+            title: "Piraeus",
+            content: "Piraeus is a port city in the Attica region of Greece.",
+          });
+
+          var pinGraphic1 = new Graphic({
+            geometry: pinPoint1,
+            symbol: pinSymbol1,
+            popupTemplate: popupTemplate1,
+          });
+
+          view.graphics.add(pinGraphic1);
+
+          // Second pin (AKMI AVT)
+          var pinPoint2 = new Point({
+            longitude: 23.67099,
+            latitude: 37.95105,
+          });
+
+          var pinSymbol2 = {
+            type: "simple-marker",
+            color: "red",
+            size: "12px",
+            outline: {
+              color: [255, 255, 255],
+              width: 3,
+            },
+          };
+
+          var popupTemplate2 = new PopupTemplate({
+            title: "Solomou 10",
+            content: "That's where I am now!",
+          });
+
+          var pinGraphic2 = new Graphic({
+            geometry: pinPoint2,
+            symbol: pinSymbol2,
+            popupTemplate: popupTemplate2,
+          });
+
+          view.graphics.add(pinGraphic2);
+
+          // Third pin
+          var pinPoint3 = new Point({
+            longitude: 23.66370,
+            latitude: 37.94721,
+          });
+
+          var pinSymbol3 = {
+            type: "simple-marker",
+            color: "green",
+            size: "12px",
+            outline: {
+              color: [255, 255, 255],
+              width: 3,
+            },
+          };
+
+          var popupTemplate3 = new PopupTemplate({
+            title: "Georgios Karaiskakis Football Stadium",
+            content: "Εδώ είναι ο Θρύλος",
+          });
+
+          var pinGraphic3 = new Graphic({
+            geometry: pinPoint3,
+            symbol: pinSymbol3,
+            popupTemplate: popupTemplate3,
+          });
+
+          view.graphics.add(pinGraphic3);
+
+          // Fourth pin
+          var pinPoint4 = new Point({
+            longitude: 23.66943,
+            latitude: 37.94567,
+          });
+
+          var pinSymbol4 = {
+            type: "simple-marker",
+            color: "orange",
+            size: "12px",
+            outline: {
+              color: [255, 255, 255],
+              width: 3,
+            },
+          };
+
+          var popupTemplate4 = new PopupTemplate({
+            title: "Metropolitan Hospital",
+            content: "If you want to die go here:).",
+          });
+
+          var pinGraphic4 = new Graphic({
+            geometry: pinPoint4,
+            symbol: pinSymbol4,
+            popupTemplate: popupTemplate4,
+          });
+
+          view.graphics.add(pinGraphic4);
+
+          // Fifth pin
+          var pinPoint5 = new Point({
+            longitude: 23.66754,
+            latitude: 37.94644,
+          });
+
+          var pinSymbol5 = {
+            type: "simple-marker",
+            color: "purple",
+            size: "12px",
+            outline: {
+              color: [255, 255, 255],
+              width: 3,
+            },
+          };
+
+          var popupTemplate5 = new PopupTemplate({
+            title: "Olympic Hotel",
+            content: "The best hotel on NeoFalhro.",
+          });
+
+          var pinGraphic5 = new Graphic({
+            geometry: pinPoint5,
+            symbol: pinSymbol5,
+            popupTemplate: popupTemplate5,
+          });
+
+          view.graphics.add(pinGraphic5);
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
