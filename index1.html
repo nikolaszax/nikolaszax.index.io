@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Interactive Pins on ArcGIS Map - Piraeus, Greece</title>
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.23/"></script>
+
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/Graphic",
+        "esri/geometry/Point",
+        "esri/PopupTemplate",
+      ], function (Map, MapView, Graphic, Point, PopupTemplate) {
+        var map = new Map({
+          basemap: "topo-vector",
+        });
+
+        var view = new MapView({
+          container: "viewDiv",
+          map: map,
+          center: [23.6386, 37.9442], // Longitude, latitude
+          zoom: 14,
+        });
+
+        view.when(function () {
+          // First pin (Sharks)
+          var pinPoint1 = new Point({
+            longitude: 23.6570,
+            latitude: 37.9391,
+          });
+
+          var pinSymbol1 = {
+            type: "simple-marker",
+            color: "blue",
+            size: "12px",
+            outline: {
+              color: [255, 255, 255],
+              width: 3,
+            },
+          };
+
+          var popupTemplate1 = new PopupTemplate({
+            title: "Καστελλα",
+            content: "Here are sharks, beware!",
+          });
+
+          var pinGraphic1 = new Graphic({
+            geometry: pinPoint1,
+            symbol: pinSymbol1,
+            popupTemplate: popupTemplate1,
+          });
+
+          view.graphics.add(pinGraphic1);
+
+          // Second pin (AKMI AVT)
+          var pinPoint2 = new Point({
+            longitude: 23.6563,
+            latitude: 37.9597,
+          });
+
+          var pinSymbol2 = {
+            type: "simple-marker",
+            color: "red",
+            size: "12px",
+            outline: {
+              color: [255, 255, 255],
+              width: 3,
+            },
+          };
+
+          var popupTemplate2 = new PopupTemplate({
+            title: "My Location",
+            content: "That's where I am now!",
+          });
+
+          var pinGraphic2 = new Graphic({
+            geometry: pinPoint2,
+            symbol: pinSymbol2,
+            popupTemplate: popupTemplate2,
+          });
+
+          view.graphics.add(pinGraphic2);
+
+          // Third pin
+          var pinPoint3 = new Point({
+... (94 lines left)
